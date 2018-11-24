@@ -7,6 +7,7 @@ var secDec      = document.getElementById('secDec');
 var secUni      = document.getElementById('secUni');
 var milDec      = document.getElementById('milDec');
 var milUni      = document.getElementById('milUni');
+var splits      = document.getElementById('splits');
 
 
 function printTime() {
@@ -72,5 +73,11 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
+	if(chronometer.intervalId) {
+		var li = document.createElement('li');
+		li.innerHTML = chronometer.minutes + ':' + chronometer.seconds;
+		splits.append(li)
+	} else {
 
+	}
 });
