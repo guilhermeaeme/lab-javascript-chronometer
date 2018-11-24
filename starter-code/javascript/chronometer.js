@@ -40,6 +40,7 @@ function Chronometer() {
 
 	this.resetClick = function() {
 		this.currentTime = 0;
+		this.setTime();
 	}
 }
 
