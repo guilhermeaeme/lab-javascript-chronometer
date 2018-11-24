@@ -2,12 +2,16 @@
 function Chronometer() {
 	this.currentTime = 0,
 	this.intervalId = null,
+	this.minutes = '00',
+	this.seconds = '00',
 
 	this.startClick = function() {
 		var that = this;
 		this.intervalId = setInterval(function(){
 			that.currentTime += 1;
 			that.setTime();
+
+			printTime();
 		}, 1000);
 	},
 
