@@ -79,7 +79,6 @@ btnRight.addEventListener('click', function () {
 	if(!chronometer.intervalId) {
 		chronometer.resetClick();
 		splits.innerHTML = '';
-		printTime();
 	} else {
 		var li = document.createElement('li');
 		li.innerHTML = chronometer.minutes + ':' + chronometer.seconds + ':' + chronometer.milliseconds;
