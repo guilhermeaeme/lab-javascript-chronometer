@@ -16,6 +16,9 @@ function printTime() {
 
 	secDec.innerHTML = chronometer.seconds[0];
 	secUni.innerHTML = chronometer.seconds[1];
+
+	milDec.innerHTML = chronometer.milliseconds[0];
+	milUni.innerHTML = chronometer.milliseconds[1];	
 }
 
 function printMinutes() {
@@ -79,7 +82,7 @@ btnRight.addEventListener('click', function () {
 		printTime();
 	} else {
 		var li = document.createElement('li');
-		li.innerHTML = chronometer.minutes + ':' + chronometer.seconds;
+		li.innerHTML = chronometer.minutes + ':' + chronometer.seconds + ':' + chronometer.milliseconds;
 		splits.append(li)
 	}
 });
