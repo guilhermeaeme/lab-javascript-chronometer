@@ -13,10 +13,6 @@ function Chronometer() {
 		this.intervalId = setInterval(function(){
 			that.currentTime += 1;
 			that.setTime();
-
-			if(document.getElementById('minDec')) {
-				printTime();
-			}
 		}, 1000);
 
 		this.milIntervalId = setInterval(function(){
@@ -27,10 +23,6 @@ function Chronometer() {
 			}
 
 			that.setTime();
-
-			if(document.getElementById('minDec')) {
-				printTime();
-			}
 		}, 10);
 	},
 
@@ -55,6 +47,10 @@ function Chronometer() {
 		this.minutes = this.twoDigitsNumber(this.setMinutes())
 		this.seconds = this.twoDigitsNumber(this.setSeconds());
 		this.milliseconds = this.twoDigitsNumber(this.setMilliseconds());
+
+		if(document.getElementById('minDec')) {
+			printTime();
+		}
 	},
 
 	this.stopClick = function() {
