@@ -2,9 +2,11 @@
 function Chronometer() {
 	this.currentTime = 0,
 	this.intervalId = null,
+	this.milIntervalId = null,
 	this.minutes = '00',
 	this.seconds = '00',
 	this.milliseconds = '00',
+	this.currentMilliseconds = 0;
 
 	this.startClick = function() {
 		var that = this;
@@ -12,22 +14,36 @@ function Chronometer() {
 			that.currentTime += 1;
 			that.setTime();
 
-			printTime();
+			if(document.getElementById('minDec')) {
+				printTime();
+			}
+		}, 1000);
+
+		this.milIntervalId = setInterval(function(){
+			that.currentMilliseconds += 1;
+
+			if(that.currentMilliseconds > 99) {
+				that.currentMilliseconds = 0;
+			}
+
+			that.setTime();
+
+			if(document.getElementById('minDec')) {
+				printTime();
+			}
 		}, 10);
 	},
 
 	this.setMinutes = function() {
-		if(this.currentTime < 100) return 0;
-		return Math.floor((this.currentTime / 100) / 60);
+		return Math.floor(this.currentTime / 60);
 	},
 
 	this.setSeconds = function() {
-		if(this.currentTime < 100) return 0;
-		return Math.floor(this.currentTime / 100) - (this.setMinutes() * 60);
+		return Math.floor(this.currentTime - (this.setMinutes() * 60));
 	},
 
 	this.setMilliseconds = function() {
-		return this.currentTime - (this.setSeconds() * 100) - (this.setMinutes() * 60);
+		return this.currentMilliseconds;
 	},
 
 	this.twoDigitsNumber = function(value) {
@@ -43,11 +59,13 @@ function Chronometer() {
 
 	this.stopClick = function() {
 		clearInterval(this.intervalId);
+		clearInterval(this.milIntervalId);
 		this.intervalId = null;
 	},
 
 	this.resetClick = function() {
 		this.currentTime = 0;
+		this.currentMilliseconds = 0;
 		this.setTime();
 	}
 }
